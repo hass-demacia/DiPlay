@@ -17,7 +17,7 @@ import com.shilapi.xcertplay.host.R
 class DiPlaySessionService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (intent?.action == ACTION_STOP) {
+        if (intent?.action == stopAction()) {
             CarPlayBackgroundSession.stop()
             stopSelf()
             return START_NOT_STICKY
@@ -25,7 +25,7 @@ class DiPlaySessionService : Service() {
         val manager = getSystemService(NotificationManager::class.java)
         manager.createNotificationChannel(NotificationChannel(CHANNEL, "CarPlay connection", NotificationManager.IMPORTANCE_LOW))
         val open = PendingIntent.getActivity(this, 0, Intent(this, CarPlayHostActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-        val stop = PendingIntent.getService(this, 1, Intent(this, DiPlaySessionService::class.java).setAction(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        val stop = PendingIntent.getService(this, 1, Intent(this, DiPlaySessionService::class.java).setAction(stopAction()), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         val notification = Notification.Builder(this, CHANNEL)
             .setSmallIcon(R.drawable.ic_diplay_notification)
             .setContentTitle("DiPlay")
@@ -47,8 +47,8 @@ class DiPlaySessionService : Service() {
         CarPlayBackgroundSession.stop()
         stopSelf()
     }
+    private fun stopAction() = "$packageName.DISCONNECT"
     companion object {
-        const val ACTION_STOP = "com.shihab.diplay.DISCONNECT"
         private const val CHANNEL = "diplay_connection"
     }
 }

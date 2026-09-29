@@ -8,6 +8,20 @@ Requirements: JDK 25, Android SDK 37, NDK 28.2.13676358 and the included Gradle 
 ./gradlew :shared:testDebugUnitTest :common:testDebugUnitTest :mobile:lintDebug :mobile:assembleDebug
 ```
 
+The mobile package is `io.github.hassdemacia.diplay` for this fork. Debug builds
+append `.hudtest`. This creates a separate Android app identity: it does not update
+an installation made with the upstream ID, and its app data and permissions start
+empty.
+
+## GitHub Actions APK
+
+Open **Actions → Android checks → Run workflow** and start the run. The workflow
+provisions JDK 25 and the Android toolchain on the
+GitHub runner, executes tests and lint, builds the source-only debug APK, and
+uploads `diplay-debug-apk-<run number>` under the run's **Artifacts** section.
+The APK inside is `mobile-debug.apk`; its installed package is
+`io.github.hassdemacia.diplay.hudtest`.
+
 The resulting source-only APK contains no accessory identity. Standalone CarPlay requires runtime authentication provisioning. Tests generate synthetic identities at runtime; no test private-key files are tracked.
 
 ## Local release packaging

@@ -1,6 +1,6 @@
 # DiPlay
 
-**CarPlay for compatible Android head units.** Wired and wireless, with the familiar DiAuto interface. Independent app: `com.shihab.diplay`.
+**CarPlay for compatible Android head units.** Wired and wireless, with the familiar DiAuto interface. Fork app: `io.github.hassdemacia.diplay`.
 
 [Download & website](https://shihabal3amri.github.io/DiPlay/) · [Release](https://github.com/shihabal3amri/DiPlay/releases/tag/v0.2.0) · [Report a problem](https://github.com/shihabal3amri/DiPlay/issues/new/choose)
 

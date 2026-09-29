@@ -14,7 +14,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.shihab.diplay"
+        applicationId = "io.github.hassdemacia.diplay"
         minSdk = 28
         targetSdk = 37
         versionCode = 25
